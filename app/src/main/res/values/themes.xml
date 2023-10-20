@@ -6,4 +6,12 @@
     </style>
 
     <style name="Theme.MADTLab2" parent="Base.Theme.MADTLab2" />
+
+    <style name="BlueTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/bluePrimary</item>
+        <item name="colorPrimaryDark">@color/bluePrimaryDark</item>
+        <item name="colorAccent">@color/blueAccent</item>
+    </style>
+
+
 </resources>

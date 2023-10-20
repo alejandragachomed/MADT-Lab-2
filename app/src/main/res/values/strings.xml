@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">MADT-Lab-2</string>
+    <string name="EditTextInfo">Initial text here</string>
+    <string name="CountWord">Count</string>
+    <string name="WordAnalysis">Word Analysis</string>
+    <string name="CharAnalysis">Char Analysis</string>
+    <string name="Welcome">Welcome to the Counter App!</string>
+
+    <string-array name="spinner_options">
+    <item>Words</item>
+    <item>Chars</item>
+    </string-array>
 </resources>
