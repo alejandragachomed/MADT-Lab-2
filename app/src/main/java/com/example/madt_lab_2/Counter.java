@@ -8,15 +8,23 @@ public class Counter {
     }
 
     public int countWords ( TextView textView) {
+
         String inputText= convert(textView);
+        if (inputText == null || inputText.isEmpty()) {
+            return 0;
+        }
         String separators = "[\\s,.]+";
         String[] words = inputText.split(separators);
         return words.length;
     }
 
     public int countChars ( TextView textView){
-        String inputText= convert (textView);
-        return inputText.length();
+        String inputText = convert(textView);
+        if (inputText != null) {
+            return inputText.length();
+        } else {
+            return 0; // Return 0 or handle the null case as needed
+        }
     }
 
 
