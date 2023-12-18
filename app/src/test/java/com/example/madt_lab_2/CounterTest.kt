@@ -9,12 +9,12 @@ import org.mockito.Mockito.*
 class CounterTest {
 
 
-    /*String converter test*/
+
     @Test
     fun convertTest() {
         val counter = Counter()
 
-        // Mock TextView
+
         val textView = mock(TextView::class.java)
         `when`(textView.text).thenReturn("Test String")
 

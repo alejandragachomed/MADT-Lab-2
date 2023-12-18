@@ -11,30 +11,64 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.junit.Assert.assertEquals
 
 class MainTest {
 
     @get:Rule
     val activityRule = ActivityScenarioRule(MainActivity::class.java)
 
+    fun handleWordAnalyzerClick(input: String): String {
+        val analyzer= Analyzer()
+        val topN = 10
+        val wordFrequency = analyzer.analyzeWordFrequency(input, topN)
+
+        return wordFrequency.joinToString("\n") { entry ->
+            "${entry.key}: ${entry.value}"
+        }
+    }
+
+     fun handleCharAnalyzerClick(input: String): String {
+        val analyzer= Analyzer()
+        val topN = 10
+        val charFrequency = analyzer.analyzeCharFrequency(input, topN)
+
+        return charFrequency.joinToString("\n") { entry ->
+            "${entry.key}: ${entry.value}"
+        }
+    }
     @Test
-    fun testWordCountButtonClick() {
-        // Type text into EditText
-        onView(withId(R.id.inputText)).perform(typeText("Hello world"))
+    fun testWordAnalyzerButtonClick() {
+        val inputText = "This is a test sentence"
 
-        // Click on the button for word count
-        onView(withId(R.id.Wanalyzer)).perform(click())
 
-        // Check if the text view displays the expected word count
-        onView(withId(R.id.textView)).check(matches(withText("2"))) // Adjust based on your logic
+        val result = handleWordAnalyzerClick(inputText)
+
+
+        val expectedText = "Sentence: 1\na: 1\ntest: 1\nthis: 1\nis: 1"
+        val expectedResultLower = expectedText.lowercase()
+        val resultLower = result.lowercase()
+        assertEquals(expectedResultLower, resultLower)
+    }
+
+    @Test
+    fun testCharAnalyzerButtonClick() {
+        val inputText = "This is a test sentence for char analysis"
+
+
+        val result = handleCharAnalyzerClick(inputText)
+
+
+        val expectedText = "s: 6\na: 4\ne: 4\nt: 4\ni: 3\nn: 3\nc: 2\nh: 2\nr: 2\nf: 1"
+        assertEquals(expectedText, result)
     }
 
     @Test
     fun emptyInputDisplaysErrorMessage() {
-        // Clear any existing text in EditText
+
         onView(withId(R.id.inputText)).perform(clearText())
 
-        // Check if the EditText displays the error message
+
         onView(withId(R.id.inputText)).check(matches(hasErrorText("Field cannot be empty")))
     }
 
